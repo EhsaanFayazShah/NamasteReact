@@ -41,3 +41,4 @@ This reduces the bundle size, making our application load faster.
 
 Parcel minifies JavaScript, CSS, HTML, and SVG files by default.
 Minification removes unnecessary whitespace and optimizes variable names.
+More about Parcel on Official Documentation: https://parceljs.org/features/development
