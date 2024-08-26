@@ -1,0 +1,14 @@
+{
+  "name": "namaste-react-code",
+  "version": "1.0.0",
+  "description": "learning react",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "ehsaan",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
