@@ -1,4 +1,4 @@
-Welcome to Namaste React Notes.
+#### Welcome to Namaste React Notes.
 
 Caret (^) updates to all future (Minor and Patch versions) updates.
 Tilde (~) accepts only Patch releases and avoids minor updates.
