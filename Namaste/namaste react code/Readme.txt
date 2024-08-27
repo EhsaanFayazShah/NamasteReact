@@ -59,7 +59,7 @@ Parcel can compile our source code in multiple different ways simultaneously. Th
 
 When using Parcel, we can specify entry files using globs(globs are patterns used to specify sets of filenames with wildcard characters) to match multiple files at once.
 
-Globs: Globs are commonly used for locating files on a filesystem. They allow us to match multiple files using a single pattern.
+Globs: Globs are commonly used to locate files on a filesystem. They allow us to match multiple files using a single pattern.
 
 Examples:
 *: Matches any string of any length (including empty) except for path separators (e.g., / in Unix or \\ in Windows).
@@ -72,7 +72,7 @@ Examples:
   "source": ["src/a.html", "src/b.html"]
 }     
 
-Having mulitple Targets:
+Having multiple Targets:
 {
   "targets": {
     "frontend": {
@@ -83,9 +83,33 @@ Having mulitple Targets:
     }
   }
 }
-Multiple Targets: The configuration allows us to define separate entry points for different parts of our application, such as the frontend and backend. This is particularly useful for large-scale applications with distinct frontend and backend components.
+Multiple Targets: The configuration allows us to define separate entry points for different parts of our application, such as the front end and back end. This is particularly useful for large-scale applications with distinct frontend and backend components.
 
- Parcel's default behavior is to build the first target listed in the targets object. If we want to build a different target, we can specify it using the --target option in the command line:
+ Parcel's default behaviour is to build the first target listed in the target object. If we want to build a different target, we can specify it using the --target option in the command line:
 
 parcel build --target backend
+
+
+PARCEL BUILD.
+To build our web application for production using Parcel we run this cmd 'npx parcel build index.html'. 
+
+Parcel Build Process:
+When we execute npx parcel build index.html, Parcel performs the following steps:
+Bundling: Parcel analyzes our project’s dependencies, including HTML, CSS, JavaScript, and other assets referenced from index.html.
+Optimization: It applies various optimizations, such as minification, scope hoisting, and tree shaking.
+Output: Parcel generates a production-ready bundle (usually in a dist/ or build/ folder) containing all necessary files.
+Scope Hoisting: Parcel optimizes the bundle by reducing the number of function closures, improving performance.
+Cache Busting: It assigns unique filenames to assets to ensure proper cache invalidation when deploying updates.
+parcel cleans our code like console.logs. etc. and caches frequently used files.
+
+As we know static media takes time to load on the web app. Parcel caches while developing. It optimizes Images used by the web app.
+Parcel adds polyfills (compatible with older browsers). Parcel uses parcel-cache.
+Parcel manages our port numbers if more than one are being currently used.
+Parcel uses consistent hashing algorithm to cache the things up. (For bundling)
+Parcel orchestrates(arranges) things for us . Parcel has its own dependencies as well.
+
+Direct-Dependencies : React and React-DOM are direct dependencies used by the project.
+Babel is used for transpilation (browser compatible).
+
+Transitive/ Indirect Dependencies: Package manager (Parcel) takes care of the transitive dependencies of our code.
 
