@@ -8,7 +8,6 @@ const heading1 = React.createElement(
   },
   "React Hello"
 );
-
 const heading2 = React.createElement(
   "h2",
   {
