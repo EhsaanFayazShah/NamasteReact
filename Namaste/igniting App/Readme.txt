@@ -89,3 +89,5 @@ Multiple Targets: The configuration allows us to define separate entry points fo
 
 parcel build --target backend
 
+For Notes refer to the Notion:https://www.notion.so/React-Notes-85c1f14cf2cb4e308816f06af4e71237;
+
