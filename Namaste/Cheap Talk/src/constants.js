@@ -1,39 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+export const IMG_CDN_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-const Title = () => {
-  return (
-    <>
-      <a href="/">
-        <img
-          className="logo"
-          src="https://cdn.dotpe.in/longtail/store-logo/1023934/dOZPIFia.jpeg"
-        />
-      </a>
-    </>
-  );
-};
-
-const Header = () => {
-  return (
-    <>
-      <div className="header">
-        <Title />
-        <div className="nav-items">
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Cart</li>
-          </ul>
-        </div>
-      </div>
-    </>
-  );
-};
-// Config Driven UI
-// Config Driven UI is a design pattern where the user interface (UI) is generated based on external configuration data, rather than hard-coded elements. This allows for greater flexibility and scalability, as changes to the UI can be made by updating the configuration file without altering the application’s core code.
-const restaurantList = [
+export const restaurantList = [
   {
     info: {
       id: "766876",
@@ -397,56 +365,3 @@ const restaurantList = [
     },
   },
 ];
-const RestaurantCard = ({ name, cuisines, avgRating, cloudinaryImageId }) => {
-  return (
-    <div className="card">
-      <img
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      />
-      <h2>{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{avgRating} Stars</h4>
-    </div>
-  );
-};
-const Footer = () => {
-  return <h1>I am footer</h1>;
-};
-// Unique-Key (Best Option)
-// Index-Key (Last Option)
-// No-Key (Not Acceptable)
-// Virtual DOM is the representation of the actual DOM.
-// Reconciliation is the concept/technique that uses diffing algorithm to track changes made to specific nodes/areas and render the same to the actual DOM.
-// React 16 introduced a concept of React Fiber engine that is used to Re-render the changes made to the component like diffing algo.
-// React keys are used to uniquely identify the components of react so that its easy for diff algo to compare the changes that are made.
-const Body = () => {
-  return (
-    <div className="restaurant-cards">
-      {
-        /* <RestaurantCard {...restaurantList[0].info} />
-      <RestaurantCard {...restaurantList[1].info} />
-      <RestaurantCard {...restaurantList[2].info} />
-      <RestaurantCard {...restaurantList[3].info} /> */
-        restaurantList.map((res) => (
-          <RestaurantCard {...res.info} key={res.info.id} />
-        ))
-      }
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <>
-      <Header />
-      <Body />
-      <Footer />
-    </>
-  );
-};
-let root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<App />);
