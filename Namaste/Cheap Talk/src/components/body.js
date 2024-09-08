@@ -16,7 +16,9 @@ const Body = () => {
   const [searchText, setSearchInput] = useState("");
   // const [searchClick, setSearchClick] = useState("false");
   const [restaurants, setRestaurants] = useState(restaurantList);
-
+  // console.log("render()");//for every keystroke React uses Reconciliation and render the changes to the DOM. React is really very fast.
+  //React re-renders the whole component on each keypress.
+  // console.log(restaurants);
   return (
     <>
       <div className="search-component">
