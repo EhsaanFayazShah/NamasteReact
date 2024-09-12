@@ -1,16 +1,6 @@
-import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import ShimmerExample from "./shimmer";
-
-const filterData = (searchText, restaurants) => {
-  const data = restaurants.filter((restaurant) => {
-    return restaurant?.info?.name
-      ?.toLowerCase()
-      ?.includes(searchText.toLowerCase());
-  });
-  return data;
-};
 
 const Body = () => {
   //searchText is a local variable
@@ -19,23 +9,39 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchInput] = useState("");
+  const [searchRestaurant, setSearchRestaurant] = useState("");
   // const [searchClick, setSearchClick] = useState("false");
   // console.log("render()");//-for every keystroke React uses Reconciliation and render the changes to the DOM. React is really very fast.
   //React re-renders the whole component on each keypress.
   // console.log(restaurants);
+  const filterData = (searchText, restaurants) => {
+    const data = restaurants.filter((restaurant) => {
+      return restaurant?.info?.name
+        ?.toLowerCase()
+        ?.includes(searchText.toLowerCase());
+    });
+    setSearchRestaurant(""); // Clear the search input box after search
+    return data;
+  };
 
   const getRestaurants = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=34.08660&lng=74.80630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setAllRestaurants(
-      json?.data?.cards[1].card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurants(
-      json?.data?.cards[1].card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=34.08660&lng=74.80630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+      // console.log(json);
+      setAllRestaurants(
+        json?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilteredRestaurants(
+        json?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching data" + error);
+    }
   };
   //empty-dependency array +> once after render
   //dep arr[searchText] => once after initial render + every time search text changes.
@@ -81,11 +87,18 @@ const Body = () => {
       </div>
       <div className="restaurant-cards">
         {/* //logic for no restaurant found. */}
-        {filteredRestaurants?.length === 0
-          ? "No Result Found"
-          : filteredRestaurants.map((res) => (
+        {filteredRestaurants?.length === 0 ? (
+          <>
+            <ShimmerExample />
+            {/* <h1>Not Found</h1> */}
+          </>
+        ) : (
+          filteredRestaurants.map((res) => (
+            <>
               <RestaurantCard {...res.info} key={res.info.id} />
-            ))}
+            </>
+          ))
+        )}
       </div>
     </>
   );

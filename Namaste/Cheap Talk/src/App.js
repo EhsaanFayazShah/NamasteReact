@@ -5,15 +5,14 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 // Named Export
 import { Title } from "./components/Header";
-
 import * as obj from "./components/Header";
 //obj.Title;
-
+import Error from "./components/Error";
 import Footer from "./components/footer";
-import Body from "./components/body";
-
-// Config Driven UI
-// Config Driven UI is a design pattern where the user interface (UI) is generated based on external configuration data, rather than hard-coded elements. This allows for greater flexibility and scalability, as changes to the UI can be made by updating the configuration file without altering the application’s core code.
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Body from "./components/Body";
 
 // Unique-Key (Best Option)
 // Index-Key (Last Option)
@@ -32,6 +31,28 @@ const App = () => {
     </>
   );
 };
-let root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+const appRouter = createBrowserRouter([
+  // List of Paths in array.
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
+let root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={appRouter} />);
