@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import ShimmerExample from "./shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //searchText is a local variable
@@ -51,7 +52,7 @@ const Body = () => {
     getRestaurants();
   }, []);
 
-  // console.log(restaurants);
+  // console.log(filteredRestaurants);
   // console.log("REnder");
   if (!allRestaurants) {
     //early return
@@ -95,7 +96,9 @@ const Body = () => {
         ) : (
           filteredRestaurants.map((res) => (
             <>
-              <RestaurantCard {...res.info} key={res.info.id} />
+              <Link to={"/restaurant/" + res.info.id} key={res.info.id}>
+                <RestaurantCard {...res.info} />
+              </Link>
             </>
           ))
         )}

@@ -15,10 +15,12 @@ const Title = () => {
 const Header = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    console.log("useEffect");
-  }, []);
-  console.log("render");
+  // useEffect(() => {
+  //   console.log("useEffect");
+  // }, []);
+
+  // console.log("render");
+
   return (
     <>
       <div className="header">

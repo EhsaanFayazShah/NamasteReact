@@ -9,11 +9,12 @@ import * as obj from "./components/Header";
 //obj.Title;
 import Error from "./components/Error";
 import Footer from "./components/footer";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Body from "./components/Body";
-
+import { Outlet } from "react-router-dom";
+import RestaurantMenu2 from "./components/RestaurantMenu";
 // Unique-Key (Best Option)
 // Index-Key (Last Option)
 // No-Key (Not Acceptable)
@@ -26,7 +27,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Body />
+      <Outlet />
       <Footer />
     </>
   );
@@ -50,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu2 />,
       },
     ],
   },
