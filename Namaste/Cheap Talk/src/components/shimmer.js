@@ -11,7 +11,7 @@ function ShimmerExample() {
           <div key={index} className="shimmer-item">
             <ShimmerThumbnail fitOnFrame={true} center={true} />
             {/* <ShimmerThumbnail height={100} width={100} /> */}
-            <ShimmerText line={3} gap={20} />
+            {/* <ShimmerText line={3} gap={20} /> */}
           </div>
         ))}
     </div>

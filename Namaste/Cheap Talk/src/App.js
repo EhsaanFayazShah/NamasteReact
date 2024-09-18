@@ -14,7 +14,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Body from "./components/Body";
 import { Outlet } from "react-router-dom";
-import RestaurantMenu2 from "./components/RestaurantMenu";
+import RestaurantMenu from "./components/RestaurantMenu";
 // Unique-Key (Best Option)
 // Index-Key (Last Option)
 // No-Key (Not Acceptable)
@@ -54,7 +54,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantMenu2 />,
+        element: <RestaurantMenu />,
       },
     ],
   },
