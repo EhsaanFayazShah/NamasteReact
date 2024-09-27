@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom/client";
 //Default Import Header
 //in default imports name of the component that is being exported can or cannot be same as the exported name
@@ -15,6 +15,8 @@ import Contact from "./components/Contact";
 import Body from "./components/Body";
 import { Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Profile from "./components/Profile.js";
+
 // Unique-Key (Best Option)
 // Index-Key (Last Option)
 // No-Key (Not Acceptable)
@@ -47,6 +49,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
