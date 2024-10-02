@@ -1,7 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
-import ShimmerExample from "./shimmer";
+import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   //searchText is a local variable
@@ -15,15 +17,6 @@ const Body = () => {
   // console.log("render()");//-for every keystroke React uses Reconciliation and render the changes to the DOM. React is really very fast.
   //React re-renders the whole component on each keypress.
   // console.log(restaurants);
-  const filterData = (searchText, restaurants) => {
-    const data = restaurants.filter((restaurant) => {
-      return restaurant?.info?.name
-        ?.toLowerCase()
-        ?.includes(searchText.toLowerCase());
-    });
-    setSearchRestaurant(""); // Clear the search input box after search
-    return data;
-  };
 
   const getRestaurants = async () => {
     try {
@@ -52,6 +45,10 @@ const Body = () => {
     getRestaurants();
   }, []);
 
+  let online = useOnline();
+  if (!online) {
+    return <h1>You are Offline! Please check your internet connection</h1>;
+  }
   // console.log(filteredRestaurants);
   // console.log("REnder");
   if (!allRestaurants) {
@@ -62,7 +59,7 @@ const Body = () => {
   //   return <h2>No match found </h2>;
   // }
   return filteredRestaurants === 0 ? (
-    <ShimmerExample />
+    <Shimmer />
   ) : (
     <>
       <div className="search-component">
@@ -90,7 +87,7 @@ const Body = () => {
         {/* //logic for no restaurant found. */}
         {filteredRestaurants?.length === 0 ? (
           <>
-            <ShimmerExample />
+            <Shimmer />
             {/* <h1>Not Found</h1> */}
           </>
         ) : (

@@ -5,14 +5,14 @@ const Profile = (props) => {
   // const [count2] = useState(33);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      console.log("Set Interval called");
-    }, 1000);
+    // const timer = setInterval(() => {
+    //   console.log("Set Interval called");
+    // }, 1000);
     console.log("useeffect ");
 
     return () => {
       console.log("useeffect return ");
-      clearInterval(timer);
+      // clearInterval(timer);
     };
   }, []);
   return (

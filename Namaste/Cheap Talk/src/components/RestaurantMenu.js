@@ -1,39 +1,17 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { IMG_CDN_URL } from "../constants";
-
+import Shimmer from "./shimmer";
+import useRestaurant from "../utils/useRestaurant";
 const RestaurantMenu = () => {
-  const [restaurant, setRestaurant] = useState(null);
-  const [menu, setMenu] = useState([]);
+  // const [menu, setMenu] = useState([]);
 
   const { id } = useParams(); // useParams gets the thing that is passed to it inside the outlet.
-
-  async function getRestaurantInfo() {
-    try {
-      const response = await fetch(
-        `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=34.08660&lng=74.80630&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
-      );
-      const json = await response.json();
-      // console.log(json?.data?.cards?.[2]?.card?.card?.info.name); //restaurant name in console when any card is clicked.
-      setRestaurant(json?.data?.cards?.[2]?.card?.card?.info);
-
-      const itemCards =
-        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]
-          ?.card?.card?.itemCards || [];
-      setMenu(itemCards);
-      // console.log("item CArds " + menu.length);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
 
   // useEffect(() => {
   //   console.log("Menu items:", menu);
   // }, [menu]);
+  const [restaurant, menu] = useRestaurant(id); ///custom made hook.
 
   return (
     <>
@@ -59,7 +37,10 @@ const RestaurantMenu = () => {
             </div>
           ))
         ) : (
-          <p>No menu items available</p>
+          <>
+            <Shimmer />
+            <p>No Menu items are available</p>
+          </>
         )}
       </div>
     </>
