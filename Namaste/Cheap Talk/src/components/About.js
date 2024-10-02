@@ -10,6 +10,7 @@ class About extends React.Component {
   }
   componentDidMount() {
     //best place to make api call.
+    // https://api.github.com/users/EhsaanFayazShah
     console.log("Parent mount");
   }
   render() {
@@ -18,8 +19,7 @@ class About extends React.Component {
       <>
         <h1>This is About us Page </h1>
         <h1>Welcome</h1>
-        <Profile name={"Child 1"} xyz={"meena"} />
-        <Profile name={"Child 2"} xyz={"meena"} />
+        <ProfileFun name={"EhsaanFayazShah"} />
       </>
     );
   }
