@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 //Default Import Header
 //in default imports name of the component that is being exported can or cannot be same as the exported name
@@ -16,7 +16,12 @@ import Body from "./components/Body";
 import { Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile.js";
+// import Instamart from "./components/Instamart.js";
 
+// lazy loading instamart, lazy comes from react libarary.
+const Instamart = lazy(() => {
+  return import("./components/Instamart.js");
+});
 // Unique-Key (Best Option)
 // Index-Key (Last Option)
 // No-Key (Not Acceptable)
@@ -63,6 +68,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<h2>loading.......</h2>}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },
